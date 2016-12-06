@@ -28,7 +28,7 @@ Imagine you have three modules:
 Each of these come with interdependencies and we need to check for conflicts. Like if accordion was dependent on core `v1.0.0` or on an entirely different
 module that we don't even have in our Sass.
 
-To make sure this works we need to *register each module* and at the end *check for conflicts* and throw errors on compile time.
+To make sure this works we need to **register each module** and at the end **check for conflicts** and throw errors on compile time.
 
 ### Register
 
