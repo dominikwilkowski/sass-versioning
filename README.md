@@ -1,8 +1,14 @@
 Sass-versioning
 ===============
 
-> Version your sass modules and test them at compile time
+[![NPM](https://nodei.co/npm/sass-versioning.png?downloads=false)](https://nodei.co/npm/sass-versioning/)
 
+> Version your sass modules and test them at compile time. Inspired by [Sass deprecate](https://github.com/salesforce-ux/sass-deprecate) this package enables
+> you to combine individually versioned sass partials with interdependencies and check for conflicts before you generate the CSS.
+
+![Sass error examples](https://raw.githubusercontent.com/dominikwilkowski/sass-versioning/master/assets/errors.jpg)
+
+[Sass versioning API documentation](https://dominikwilkowski.github.io/sass-versioning/sassdoc/)
 
 ## Content
 
@@ -20,8 +26,8 @@ Sass-versioning
 
 |   Branch  |  Status  |
 |-----------|----------|
-| `master`: | [![Build Status](https://travis-ci.org/dominikwilkowski/sass-versioning.svg?branch=master)](https://travis-ci.org/dominikwilkowski/sass-versioning) |
-| `dev`:    | [![Build Status](https://travis-ci.org/dominikwilkowski/sass-versioning.svg?branch=dev)](https://travis-ci.org/dominikwilkowski/sass-versioning) |
+|  `master` | [![Build Status](https://travis-ci.org/dominikwilkowski/sass-versioning.svg?branch=master)](https://travis-ci.org/dominikwilkowski/sass-versioning) |
+|  `dev`    | [![Build Status](https://travis-ci.org/dominikwilkowski/sass-versioning.svg?branch=dev)](https://travis-ci.org/dominikwilkowski/sass-versioning) |
 
 
 **[⬆ back to top](#content)**
@@ -112,6 +118,7 @@ The test script will compare the error message found here `[expected error messa
 
 ## Release History remote
 
+* v0.1.1 - Added to documentation
 * v0.1.0 - Initial starting point
 
 **[⬆ back to top](#content)**
