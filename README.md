@@ -4,7 +4,7 @@ Sass-versioning
 > Version your sass modules and test them at compile time
 
 
-### Content
+## Content
 
 * [Usage](#usage)
 * [Test](#test)
@@ -15,7 +15,7 @@ Sass-versioning
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-### Usage
+## Usage
 
 If you have multiple versioned Sass modules and need to defined dependencies amongst them, this is for you.
 
@@ -75,7 +75,7 @@ This mixin will throw an descriptive `@error` if it finds a conflicts.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-### Test
+## Test
 
 To test run `npm test` in the project folder. The test script will run over each `*.scss` file inside the `./test/` folder. Each of those files has a comment
 at the very first line of the file that looks like this:
@@ -95,7 +95,7 @@ The test script will compare the error message found here `[expected error messa
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-### Release History remote
+## Release History remote
 
 * v0.1.0 - Initial starting point
 
@@ -105,7 +105,7 @@ The test script will compare the error message found here `[expected error messa
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-### License
+## License
 
 Copyright (c) Dominik Wilkowski. Licensed under the [GNU GPLv3](https://raw.githubusercontent.com/dominikwilkowski/sass-versioning/master/LICENSE).
 
