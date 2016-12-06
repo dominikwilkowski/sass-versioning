@@ -199,7 +199,7 @@
 					}
 
 					@if $_found == false {
-						@error 'The module "#{$name}" requires "#{$dependency-name}" v#{$dependency-version}. But the dependency is missing entirely';
+						// @error 'The module "#{$name}" requires "#{$dependency-name}" v#{$dependency-version}. But the dependency is missing entirely';
 					}
 				}
 			}
