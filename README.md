@@ -6,10 +6,25 @@ Sass-versioning
 
 ## Content
 
+* [Build status](#build-status)
 * [Usage](#usage)
 * [Test](#test)
 * [Release History](#release-history-remote)
 * [License](#license)
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+## Build status
+
+|   Branch  |  Status  |
+|-----------|----------|
+| `master`: | [![Build Status](https://travis-ci.org/dominikwilkowski/sass-versioning.svg?branch=master)](https://travis-ci.org/dominikwilkowski/sass-versioning) |
+| `dev`:    | [![Build Status](https://travis-ci.org/dominikwilkowski/sass-versioning.svg?branch=dev)](https://travis-ci.org/dominikwilkowski/sass-versioning) |
+
+
+**[⬆ back to top](#content)**
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
