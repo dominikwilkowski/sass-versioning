@@ -1,0 +1,9 @@
+$name: "grid";
+$version: "1.1.0";
+$dependencies: (
+	("core", "2.0.0"),
+);
+
+@include versioning-add( $name, $version, $dependencies ); //add to global scope
+
+//some css declared

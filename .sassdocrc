@@ -1,0 +1,12 @@
+{
+	"package": {
+		"title": "Scss Versioning",
+		"name": "scss-versioning",
+		"homepage": "https://github.com/dominikwilkowski/scss-versioning",
+		"description": "Version your scss modules and test them at compile time."
+	},
+	"groups": {
+		"main": "Main"
+	},
+	"autofill": "false"
+}
