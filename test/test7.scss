@@ -1,0 +1,12 @@
+// expected: no error
+
+
+@import "../index";
+
+//adding files
+@import 'partials/partial1.scss';
+@import 'partials/partial2.scss';
+@import 'partials/partial3.scss';
+
+//checking all versions
+@include versioning-check();

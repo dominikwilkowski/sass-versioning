@@ -1,0 +1,209 @@
+/// Casts a string into a number (integer only)
+///
+/// @param {String} $value - Value to be parsed
+///
+/// @return {Number}
+///
+/// @author @HugoGiraudel - Simplified by @kaelig to only convert unsigned integers
+/// @link http://hugogiraudel.com/2014/01/15/sass-string-to-number/
+///
+/// @group Private functions
+///
+/// @access private
+@function _to-number( $value ) {
+	$result: 0;
+	$digits: 0;
+	$numbers: ( '0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9 );
+
+	@for $i from 1 through str-length( $value ) {
+		$character: str-slice( $value, $i, $i );
+
+		@if ($digits == 0) {
+			$result: $result * 10 + map-get( $numbers, $character );
+		} @else {
+			$digits: $digits * 10;
+			$result: $result + map-get( $numbers, $character ) / $digits;
+		}
+	}
+
+	@return $result;
+}
+
+
+/// Major revision of a version
+///
+/// @param {String} $version - SemVer version (e.g. '1.0.0')
+/// @return {Number} Major revision
+///
+/// @example scss
+///  _version-major('1.0.0') // 1
+///
+/// @author @kaelig
+/// @link https://github.com/salesforce-ux/sass-deprecate
+///
+/// @group Private functions
+///
+/// @access private
+@function _version-major( $version ) {
+	@return _to-number( str-slice( $version, 0, str-index( $version, '.' ) - 1) );
+}
+
+
+/// Minor revision of a version
+///
+/// @param {String} $version - SemVer version (e.g. '1.50.0')
+/// @return {Number} Minor revision
+///
+/// @example scss
+///  _version-minor('1.50.0')  * 50
+///
+/// @author @kaelig
+/// @link https://github.com/salesforce-ux/sass-deprecate
+///
+/// @group Private functions
+///
+/// @access private
+@function _version-minor( $version ) {
+	$minor-patch: str-slice( $version, str-index( $version, '.' ) + 1, str-length( $version ) );
+	@return _to-number( str-slice( $minor-patch, 0, str-index( $minor-patch, '.' ) - 1 ) );
+}
+
+
+/// Patch revision of a version
+///
+/// @param {String} $version - SemVer version (e.g. '1.50.25')
+///
+/// @return {Number} Patch revision
+///
+/// @example scss
+/// _version-patch('1.50.25') // 25
+///
+/// @author @kaelig
+/// @link https://github.com/salesforce-ux/sass-deprecate
+///
+/// @group Private functions
+///
+/// @access private
+@function _version-patch( $version ) {
+	$minor-patch: str-slice( $version, str-index( $version, '.' ) + 1, str-length( $version ) );
+	@return _to-number( str-slice( $minor-patch, str-index( $minor-patch, '.' ) + 1, str-length( $minor-patch ) ) );
+}
+
+
+
+/// Logic for adding versioning to the global list `$au-glob-dependencies`
+///
+/// @param  {String}  $name  Name of the module adding this dependency
+/// @param  {String}  $name  Version of the module adding this dependency
+/// @param  {List}    $name  Dependencies of this module
+///
+/// @example scss
+/// 	$name: "accordion";
+/// 	$version: "1.0.0";
+/// 	$dependencies: (
+/// 		("core", "2.0.0"),
+/// 		("grid", "1.0.0"),
+/// 	);
+///
+/// 	@include versioning-add( $name, $version, $dependencies );
+///
+/// @output The variable `$au-glob-dependencies` will be populated with the items that have been passed
+///
+/// @group Main
+///
+/// @access public
+@mixin versioning-add( $name, $version, $dependencies ) {
+	//checking types
+	@if type-of( $name ) != "string" {
+		@error "The first attribute of the versioning-add mixin needs to be a string. It's currently a #{ type-of( $name ) }";
+	}
+
+	@if type-of( $version ) != "string" {
+		@error "The second attribute of the versioning-add mixin needs to be a string. It's currently a #{ type-of( $name ) }";
+	}
+
+	@if type-of( $dependencies ) != "list" {
+		@error "The third attribute of the versioning-add mixin needs to be a string. It's currently a #{ type-of( $name ) }";
+	}
+
+	//adding to global var
+	$au-glob-dependencies: () !default;
+	$item: (
+		($name, $version, $dependencies)
+	);
+
+	$au-glob-dependencies: append( $au-glob-dependencies, $item ) !global;
+}
+
+
+/// Testing if all dependencies inside `$au-glob-dependencies` are satisfied
+///
+/// @example scss
+/// 	@include versioning-check();
+///
+/// @group Main
+///
+/// @access public
+@mixin versioning-check() {
+
+	//iterating over each module inside $au-glob-dependencies
+	@for $i from 1 through length( $au-glob-dependencies ) {
+		$item: nth( $au-glob-dependencies, $i );
+		$name: "#{nth( $item, 1 )}";
+		$version: "#{nth( $item, 2 )}";
+		$dependencies: nth( $item, 3 );
+
+		//iterating over the dependencies of this module
+		@if( length( $dependencies ) > 0 ) {
+			@for $o from 1 through length( $dependencies ) {
+				$dependency: nth( $dependencies, $o );
+
+				//does this module even have dependencies?
+				@if length( $dependency ) > 1 {
+					$_found: false; //we have to assume the worst
+					$dependency-name: nth($dependency, 1);
+					$dependency-version: nth($dependency, 2);
+
+					//iterate over all dependencies again to check if we have what is required
+					@for $o from 1 through length( $au-glob-dependencies ) {
+						$check-item: nth( $au-glob-dependencies, $o );
+						$check-name: "#{nth( $check-item, 1 )}";
+						$check-version: "#{nth( $check-item, 2 )}";
+
+						//we found the item we depend on
+						@if $check-name == $dependency-name {
+							$_found: true; //ok we found the module
+
+							//this is the version we need
+							//let's convert our version string into integer for each section major, minor and patch
+							$dependency-major: _version-major( $dependency-version );
+							$dependency-minor: _version-minor( $dependency-version );
+							$dependency-patch: _version-patch( $dependency-version );
+
+							//this is the version we found to have in our module list installed
+							//let's convert our version string into integer for each section major, minor and patch
+							$check-major: _version-major( $check-version );
+							$check-minor: _version-minor( $check-version );
+							$check-patch: _version-patch( $check-version );
+
+							//handling errors
+							//[dependency-major](required version) > [check-major](version that is present)
+							@if
+								$dependency-major != $check-major or
+								$dependency-major == $check-major and $dependency-minor > $check-minor or
+								$dependency-major == $check-major and $dependency-patch > $check-patch
+							{
+								@error 'The module "#{$name}" requires "#{$dependency-name}" v#{$dependency-version}. But "#{$check-name}" v#{$check-version} included.'
+							}
+						}
+					}
+
+					@if $_found == false {
+						@error 'The module "#{$name}" requires "#{$dependency-name}" v#{$dependency-version}. But the dependency is missing entirely';
+					}
+				}
+			}
+
+		}
+	}
+}

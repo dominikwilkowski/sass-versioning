@@ -1,0 +1,63 @@
+// expected: The module "grid" requires "buttons" v1.0.0. But the dependency is missing entirely
+
+
+@import "../index";
+
+//core module
+@mixin core() {
+	$name: "core";
+	$version: "2.0.0";
+	$dependencies: ();
+
+	@include versioning-add( $name, $version, $dependencies ); //add to global scope
+
+
+	.au-core {
+		color: rebeccapurple;
+	}
+}
+
+
+//accordion module
+@mixin accordion() {
+	$name: "accordion";
+	$version: "1.0.0";
+	$dependencies: (
+		("core", "2.0.0"),
+		("grid", "1.0.0"),
+	);
+
+	@include versioning-add( $name, $version, $dependencies ); //add to global scope
+
+
+	.au-accordion {
+		color: hotpink;
+	}
+}
+
+
+//grid module
+@mixin grid() {
+	$name: "grid";
+	$version: "1.1.0";
+	$dependencies: (
+		("core", "2.0.0"),
+		("buttons", "1.0.0"), //will fail
+	);
+
+	@include versioning-add( $name, $version, $dependencies ); //add to global scope
+
+
+	.au-grid {
+		color: green;
+	}
+}
+
+
+//adding modules
+@include core();
+@include accordion();
+@include grid();
+
+//checking all versions
+@include versioning-check();
