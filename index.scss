@@ -4,7 +4,7 @@
 ///
 /// @return {Number}
 ///
-/// @author @HugoGiraudel - Simplified by @kaelig to only convert unsigned integers
+/// @author @HugoGiraudel - Simplified by @kaelig to only convert unsigned integers for salesforce ux
 /// @link http://hugogiraudel.com/2014/01/15/sass-string-to-number/
 ///
 /// @group Private functions
@@ -38,7 +38,7 @@
 /// @example scss
 ///  _version-major('1.0.0') // 1
 ///
-/// @author @kaelig
+/// @author Salesforce ux
 /// @link https://github.com/salesforce-ux/sass-deprecate
 ///
 /// @group Private functions
@@ -57,7 +57,7 @@
 /// @example scss
 ///  _version-minor('1.50.0')  * 50
 ///
-/// @author @kaelig
+/// @author Salesforce ux
 /// @link https://github.com/salesforce-ux/sass-deprecate
 ///
 /// @group Private functions
@@ -78,7 +78,7 @@
 /// @example scss
 /// _version-patch('1.50.25') // 25
 ///
-/// @author @kaelig
+/// @author Salesforce ux
 /// @link https://github.com/salesforce-ux/sass-deprecate
 ///
 /// @group Private functions
