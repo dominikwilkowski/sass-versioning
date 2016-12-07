@@ -3,8 +3,8 @@ Sass-versioning
 
 [![NPM](https://nodei.co/npm/sass-versioning.png?downloads=false)](https://nodei.co/npm/sass-versioning/)
 
-> Version your sass modules and test them at compile time. Inspired by [Sass deprecate](https://github.com/salesforce-ux/sass-deprecate) this package enables
-> you to combine individually versioned sass partials with interdependencies and check for conflicts before you generate the CSS.
+> Version your sass modules and test them at compile time. Inspired by [Salesforce ux Sass deprecate](https://github.com/salesforce-ux/sass-deprecate) this
+> package enables you to combine individually versioned sass partials with interdependencies and check for conflicts before you generate the CSS.
 
 ![Sass error examples](https://raw.githubusercontent.com/dominikwilkowski/sass-versioning/master/assets/errors.jpg)
 
@@ -118,6 +118,7 @@ The test script will compare the error message found here `[expected error messa
 
 ## Release History remote
 
+* v0.1.2 - Tweaked code credit
 * v0.1.1 - Added to documentation
 * v0.1.0 - Initial starting point
 
