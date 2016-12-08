@@ -1,11 +1,12 @@
 {
 	"name": "sass-versioning",
-	"version": "0.1.2",
+	"version": "0.2.0",
 	"description": "Version your Sass modules and test them at compile time",
 	"homepage": "https://github.com/dominikwilkowski/sass-versioning",
 	"keywords": [
 		"scss",
 		"sass",
+		"eyeglass-module",
 		"versioning",
 		"semver"
 	],
@@ -29,25 +30,32 @@
 		"url": "http://dominik-wilkowski.com/"
 	},
 	"scripts": {
+		"concat": "rm -rf ./dist/ && mkdir ./dist/ && cat ./src/* > dist/index.scss",
+		"generate-doc": "./node_modules/.bin/sassdoc ./dist/index.scss sassdoc --config=.sassdocrc && cfonts ' Documentation successfully generated' -f console -c candy",
 		"test": "node ./test/test.js",
-		"generate-doc": "./node_modules/.bin/sassdoc index.scss sassdoc --config=.sassdocrc && cfonts ' Documentation successfully generated' -f console -c candy"
+		"watch": "watch 'npm run concat && npm run generate-doc && npm run test' ./src/"
 	},
 	"files": [
-		"index.scss",
+		"./dist/index.scss",
 		"README.md"
 	],
-	"main": "index.scss",
+	"main": "./dist/index.scss",
 	"ignore": [
 		"test",
 		"sassdoc",
 		"**/.*",
 		"assets"
 	],
+	"eyeglass": {
+		"name": "sass-versioning",
+		"exports": false
+	},
 	"devDependencies": {
 		"cfonts": "^1.0.2",
 		"chalk": "^1.1.3",
 		"glob": "^7.1.1",
 		"node-sass": "^3.13.0",
-		"sassdoc": "^2.1.20"
+		"sassdoc": "^2.1.20",
+		"watch": "^1.0.1"
 	}
 }

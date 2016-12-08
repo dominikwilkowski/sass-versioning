@@ -1,7 +1,7 @@
 // expected: The module "grid" requires "core" v2.0.1. But "core" v2.0.0 included.
 
 
-@import "../index";
+@import "../dist/index";
 
 //core module
 @mixin core() {

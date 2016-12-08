@@ -6,7 +6,8 @@
 		"description": "Version your scss modules and test them at compile time."
 	},
 	"groups": {
-		"main": "Main"
+		"main": "Sass-versioning",
+		"undefined": "Sass-semver"
 	},
 	"autofill": "false"
 }
