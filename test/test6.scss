@@ -1,7 +1,7 @@
 // expected: The module "grid" requires "buttons" v1.0.0. But the dependency is missing entirely
 
 
-@import "../index";
+@import "../dist/index";
 
 //core module
 @mixin core() {
