@@ -26,6 +26,11 @@ Sass-versioning
 
 ## Usage
 
+Sass-versioning replies on [semantically versioned](http://semver.org/) modules. According to `semver` a major version will break backwards compatibility while
+minor and patch versions keep backwards compatibility intact so this script will throw errors only on major version mismatches and when a module can't be found.
+
+### Example
+
 If you have multiple versioned Sass modules and need to defined dependencies amongst them, this is for you.
 
 Imagine you have a couple modules:
@@ -60,7 +65,7 @@ Imagine you have a couple modules:
 ```
 
 Each of these come with interdependencies and we need to check for conflicts. Like if grid was dependent on core `v1.0.0` but only `v2.0.0` was imported or on
-an entirely different module that we don’t even have in our imports.
+an entirely different module that we don’t even have in our imports. To see more examples check out the `./test/` folder.
 
 To make sure this works, we need to **register each module** and at the bottom of all imports **check for conflicts** and throw errors on conflicts.
 
