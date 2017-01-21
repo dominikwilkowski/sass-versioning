@@ -205,6 +205,7 @@ The test script will compare the error message found here `[expected error messa
 
 ## Release History remote
 
+* v0.2.1 - Fixed package.json files array
 * v0.2.0 - Added eyeglass support, moved to @HugoGiraudel excellent sass-semver, added more docs
 * v0.1.2 - Tweaked code credit
 * v0.1.1 - Added to documentation
