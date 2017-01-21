@@ -1,6 +1,6 @@
 {
 	"name": "sass-versioning",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Version your Sass modules and test them at compile time",
 	"homepage": "https://github.com/dominikwilkowski/sass-versioning",
 	"keywords": [
@@ -36,8 +36,7 @@
 		"watch": "watch 'npm run concat && npm run generate-doc && npm run test' ./src/"
 	},
 	"files": [
-		"./dist/index.scss",
-		"README.md"
+		"dist/index.scss"
 	],
 	"main": "./dist/index.scss",
 	"ignore": [
