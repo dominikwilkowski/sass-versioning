@@ -4,9 +4,9 @@
 @import "../dist/index";
 
 //adding files
-@import 'partials/partial1.scss';
-@import 'partials/partial2.scss';
-@import 'partials/partial3.scss';
+@import 'partials/_partial1.scss';
+@import 'partials/_partial2.scss';
+@import 'partials/_partial3.scss';
 
 //checking all versions
 @include versioning-check();

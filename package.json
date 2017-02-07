@@ -1,6 +1,6 @@
 {
 	"name": "sass-versioning",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "Version your Sass modules and test them at compile time",
 	"homepage": "https://github.com/dominikwilkowski/sass-versioning",
 	"keywords": [
@@ -30,15 +30,15 @@
 		"url": "http://dominik-wilkowski.com/"
 	},
 	"scripts": {
-		"concat": "rm -rf ./dist/ && mkdir ./dist/ && cat ./src/* > dist/index.scss",
-		"generate-doc": "./node_modules/.bin/sassdoc ./dist/index.scss sassdoc --config=.sassdocrc && cfonts ' Documentation successfully generated' -f console -c candy",
+		"concat": "rm -rf ./dist/ && mkdir ./dist/ && cat ./src/* > dist/_index.scss",
+		"generate-doc": "./node_modules/.bin/sassdoc ./dist/_index.scss sassdoc --config=.sassdocrc && cfonts ' Documentation successfully generated' -f console -c candy",
 		"test": "node ./test/test.js",
 		"watch": "watch 'npm run concat && npm run generate-doc && npm run test' ./src/"
 	},
 	"files": [
-		"dist/index.scss"
+		"dist/_index.scss"
 	],
-	"main": "./dist/index.scss",
+	"main": "./dist/_index.scss",
 	"ignore": [
 		"test",
 		"sassdoc",
