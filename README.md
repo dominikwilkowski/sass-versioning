@@ -101,6 +101,17 @@ $dependencies: ();  //no dependencies
 //add some awesome Sass here
 ```
 
+### Removing a dependency
+
+Sometimes you may want to remove a dependency before checking for conflicts as, while the module is a dependency, it may not come with a sass file.
+
+```scss
+@include versioning-remove( 'grid' );
+```
+
+This will remove the `grid` module from all dependencies. Make sure you run `versioning-remove` before `versioning-check()` though.
+
+
 ### Check for conflicts
 
 When you include all those modules you now need to check for conflicts with the `versioning-check()` mixin. Make sure you call this at the bottom after all
@@ -203,8 +214,9 @@ The test script will compare the error message found here `[expected error messa
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-## Release History remote
+## Release History
 
+* v0.3.0 - Added `versioning-remove`
 * v0.2.2 - Renamed to sass partial naming convention
 * v0.2.1 - Fixed package.json files array
 * v0.2.0 - Added eyeglass support, moved to @HugoGiraudel excellent sass-semver, added more docs
