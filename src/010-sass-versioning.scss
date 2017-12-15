@@ -8,11 +8,11 @@
  * @license      https://raw.githubusercontent.com/dominikwilkowski/sass-versioning/master/LICENSE GPL-3.0
  */
 
-/// Logic for adding versioning to the global list `$au-glob-dependencies`
+/// Logic for adding versioning to the global list `$versioning-glob-dependencies`
 ///
-/// @param  {String}  $name  Name of the module adding this dependency
-/// @param  {String}  $name  Version of the module adding this dependency
-/// @param  {List}    $name  Dependencies of this module
+/// @param  {String}  $name          Name of the module adding this dependency
+/// @param  {String}  $version       Version of the module adding this dependency
+/// @param  {List}    $dependencies  Dependencies of this module
 ///
 /// @example scss
 /// 	$name: "accordion";
@@ -24,7 +24,7 @@
 ///
 /// 	@include versioning-add( $name, $version, $dependencies );
 ///
-/// @output The variable `$au-glob-dependencies` will be populated with the items that have been passed
+/// @output The variable `$versioning-glob-dependencies` will be populated with the items that have been passed
 ///
 /// @group Main
 ///
@@ -48,16 +48,67 @@
 	}
 
 	//adding to global var
-	$au-glob-dependencies: () !default;
+	$versioning-glob-dependencies: () !default;
 	$item: (
-		($name, $version, $dependencies)
+		( $name, $version, $dependencies )
 	);
 
-	$au-glob-dependencies: append( $au-glob-dependencies, $item ) !global;
+	$versioning-glob-dependencies: append( $versioning-glob-dependencies, $item ) !global;
 }
 
 
-/// Testing if all dependencies inside `$au-glob-dependencies` are satisfied
+/// Logic for removing a single dependency from our list if that dependency e.g. doesn’t have a sass presence
+///
+/// @param  {String}  $name  Name of the module adding this dependency
+///
+/// @example scss
+/// 	@include versioning-remove( 'animation' );
+///
+/// @output The variable `$versioning-glob-dependencies` will be stripped off our dependency
+///
+/// @group Main
+///
+/// @access public
+@mixin versioning-remove( $remove ) {
+	$versioning-glob-dependencies-new: ();
+
+	//iterate over our dependencies
+	@for $i from 1 through length( $versioning-glob-dependencies ) {
+		$item: nth( $versioning-glob-dependencies, $i );
+		$name: "#{nth( $item, 1 )}";
+		$version: "#{nth( $item, 2 )}";
+		$dependencies: nth( $item, 3 );
+		$dependencies-new: ();
+
+		@if( length( $dependencies ) > 0 ) {
+			@for $o from 1 through length( $dependencies ) {
+				$dependency: nth( $dependencies, $o );
+
+				@if length( $dependency ) > 1 {
+					$dependency-name: nth($dependency, 1);
+
+					//only add the dependency if it’s not the one we’re trying to remove
+					@if $dependency-name != $remove {
+						$dependencies-new: append( $dependencies-new, $dependency );
+					}
+				}
+			}
+		}
+
+		//adding the whole pack into the list
+		$item-new: (
+			( $name, $version, $dependencies-new )
+		);
+
+		$versioning-glob-dependencies-new: append( $versioning-glob-dependencies-new, $item-new );
+	}
+
+	//now overwriting the new list with the old one
+	$versioning-glob-dependencies: $versioning-glob-dependencies-new !global;
+}
+
+
+/// Testing if all dependencies inside `$versioning-glob-dependencies` are satisfied
 ///
 /// @example scss
 /// 	@include versioning-check();
@@ -67,9 +118,9 @@
 /// @access public
 @mixin versioning-check() {
 
-	//iterating over each module inside $au-glob-dependencies
-	@for $i from 1 through length( $au-glob-dependencies ) {
-		$item: nth( $au-glob-dependencies, $i );
+	//iterating over each module inside $versioning-glob-dependencies
+	@for $i from 1 through length( $versioning-glob-dependencies ) {
+		$item: nth( $versioning-glob-dependencies, $i );
 		$name: "#{nth( $item, 1 )}";
 		$version: "#{nth( $item, 2 )}";
 		$dependencies: nth( $item, 3 );
@@ -86,8 +137,8 @@
 					$dependency-version: nth($dependency, 2);
 
 					//iterate over all dependencies again to check if we have what is required
-					@for $o from 1 through length( $au-glob-dependencies ) {
-						$check-item: nth( $au-glob-dependencies, $o );
+					@for $o from 1 through length( $versioning-glob-dependencies ) {
+						$check-item: nth( $versioning-glob-dependencies, $o );
 						$check-name: "#{nth( $check-item, 1 )}";
 						$check-version: "#{nth( $check-item, 2 )}";
 
