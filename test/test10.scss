@@ -1,0 +1,62 @@
+// expected: no error
+
+
+@import "../dist/index";
+
+//core module
+@mixin core() {
+	$name: "core";
+	$version: "3.0.0-alpha.1";
+	$dependencies: ();
+
+	@include versioning-add( $name, $version, $dependencies ); //add to global scope
+
+
+	.au-core {
+		color: rebeccapurple;
+	}
+}
+
+
+//accordion module
+@mixin accordion() {
+	$name: "accordion";
+	$version: "1.0.0";
+	$dependencies: (
+		("core", "3.0.0-alpha.1"),
+	);
+
+	@include versioning-add( $name, $version, $dependencies ); //add to global scope
+
+
+	.au-accordion {
+		color: hotpink;
+	}
+}
+
+
+//button module
+@mixin button() {
+	$name: "button";
+	$version: "1.0.0";
+	$dependencies: (
+		("core", "3.0.0-alpha.1"),
+		("accordion", "1.0.0"),
+	);
+
+	@include versioning-add( $name, $version, $dependencies ); //add to global scope
+
+
+	.au-button {
+		background: hotpink;
+	}
+}
+
+
+//adding modules
+@include core();
+@include accordion();
+@include button();
+
+//checking all versions
+@include versioning-check();
