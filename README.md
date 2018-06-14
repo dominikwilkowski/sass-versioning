@@ -205,7 +205,7 @@ at the very first line of the file that looks like this:
 .some-css {} //etc
 ```
 
-The test script will compare the error message found here `[expected error message]` against what [node-sass](https://github.com/sass/node-sass) outputs.
+The test script will compare the error message found here `[expected error message]` against what [sass](https://github.com/sass/sass) outputs.
 
 
 **[⬆ back to top](#content)**
@@ -216,6 +216,7 @@ The test script will compare the error message found here `[expected error messa
 
 ## Release History
 
+* v1.0.0 - Move to `sass` from `node-sass`
 * v0.3.0 - Added `versioning-remove`
 * v0.2.2 - Renamed to sass partial naming convention
 * v0.2.1 - Fixed package.json files array
