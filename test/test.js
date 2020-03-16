@@ -9,11 +9,11 @@
  **************************************************************************************************************************************************************/
 
 //dependencies
-const Sass = require('sass');
 const CFonts = require('cfonts');
-const Chalk = require(`chalk`);
-const Glob = require("glob");
-const Fs = require(`fs`);
+const Chalk = require('chalk');
+const Glob = require('glob');
+const Sass = require('sass');
+const Fs = require('fs');
 
 
 //global variables
@@ -25,7 +25,7 @@ let allFiles = 0;   //let's count all files so we can run something after the la
 //some cli prettiness
 CFonts.say('testing...', {
 	font: 'chrome',
-	colors: ['red','white','green'],
+	gradient: ['red','green'],
 });
 
 
@@ -80,7 +80,7 @@ Glob("./test/*.scss", (error, files) => {
 						//some more cli prettiness
 						CFonts.say('...done', {
 							font: 'chrome',
-							colors: ['red','white','green'],
+							gradient: ['red','green'],
 						});
 
 						if( !success ) { //exit with error so ci can use this
