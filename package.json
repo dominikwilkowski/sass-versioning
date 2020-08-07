@@ -52,11 +52,11 @@
 		"exports": false
 	},
 	"devDependencies": {
-		"cfonts": "^2.8.1",
-		"chalk": "^3.0.0",
+		"cfonts": "^2.8.6",
+		"chalk": "^4.1.0",
 		"glob": "^7.1.6",
-		"sass": "^1.26.3",
-		"sassdoc": "^2.7.1",
+		"sass": "^1.26.10",
+		"sassdoc": "^2.7.2",
 		"watch": "^1.0.2"
 	},
 	"contributors": [
