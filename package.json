@@ -1,6 +1,6 @@
 {
 	"name": "sass-versioning",
-	"version": "0.4.2",
+	"version": "0.4.3",
 	"description": "Version your Sass modules and test them at compile time",
 	"homepage": "https://github.com/dominikwilkowski/sass-versioning",
 	"keywords": [
@@ -58,6 +58,9 @@
 		"sass": "^1.26.10",
 		"sassdoc": "^2.7.3",
 		"watch": "^1.0.2"
+	},
+	"resolutions": {
+		"marked": "0.7.0"
 	},
 	"contributors": [
 		{
