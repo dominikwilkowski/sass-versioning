@@ -216,6 +216,7 @@ The test script will compare the error message found here `[expected error messa
 
 ## Release History
 
+* v0.4.3 - Updated dependencies
 * v0.4.2 - Updated dependencies
 * v0.4.1 - Updated dependencies
 * v0.4.0 - Move to `sass` and remove `node-sass` as dev dependency, updated dependencies
