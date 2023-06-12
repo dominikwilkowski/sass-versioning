@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dominikwilkowski/sass-versioning.svg?branch=master)](https://travis-ci.org/dominikwilkowski/sass-versioning)
+[![Build status](https://github.com/dominikwilkowski/sass-versioning/actions/workflows/testing.yml/badge.svg)](https://github.com/dominikwilkowski/sass-versioning/actions/workflows/testing.yml)
 
 Sass-versioning
 ===============
