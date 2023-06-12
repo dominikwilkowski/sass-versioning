@@ -12,7 +12,8 @@ on:
     branches:
       - 'main'
 
-  test:
+jobs:
+  test-nodejs:
     steps:
       - uses: actions/checkout@v2
 
