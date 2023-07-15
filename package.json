@@ -52,12 +52,12 @@
 		"exports": false
 	},
 	"devDependencies": {
-		"cfonts": "^3.2.0",
+		"cfonts": "^3",
 		"chalk": "^4",
-		"glob": "^10.2.7",
-		"sass": "^1.63.3",
-		"sassdoc": "^2.7.4",
-		"watch": "^1.0.2"
+		"glob": "^10",
+		"sass": "^1",
+		"sassdoc": "^2",
+		"watch": "^1"
 	},
 	"resolutions": {
 		"marked": "0.7.0"
